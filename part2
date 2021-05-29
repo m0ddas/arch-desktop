@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Edit pacman.conf
-nano /etc/pacman.conf
-
 # Setting up timezone
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
