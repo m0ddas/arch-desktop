@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo File is configured to format drives please change in config
-read -p Ctrl + c to abort
-
 # Formatting drives and setting up swap
 mkfs.fat -F32 /dev/sda1
 mkswap /dev/sda2
