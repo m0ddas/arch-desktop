@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Setting up timezone
+ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+hwclock --systohc
+
+# Setting up locale
+echo sv_SE.UTF-8 UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+locale-gen
+echo LANG=sv_SE.UTF-8 >> /etc/locale.conf
+echo KEYMAP=sv-latin1 >> /etc/vconsole.conf
+
+# Setting up /etc/hostname
+echo arch-desktop >> /etc/hostname
+echo 127.0.0.1	localhost >> /etc/hosts
+echo ::1		    localhost >> /etc/hosts
+echo 127.0.1.1  arch-desktop >> /etc/hosts
+
+# Starting installation 
+pacman -Syy
+pacman-key --populate archlinux
+passwd
+pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch fish
+
+# Preparing boot partition and installing grub
+mkdir /boot/efi
+mount /dev/sda1 /boot/efi
+grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Enabling Services and adding accounts
+systemctl enable sddm.service
+systemctl enable NetworkManager
+useradd -m modda
+passwd modda
+xdg-user-dirs-update
+EDITOR=nano visudo
+mv /moddas /home/modda/moddas
+cd /home/modda
+su modda
+echo "-----------------"
+echo "All set and done!"
+echo "-----------------"
