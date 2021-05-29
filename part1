@@ -19,9 +19,6 @@ mkdir /mnt/home
 # Mounting home partition
 mount /dev/sda4 /mnt/home
 
-# Setting up pacman.conf
-cp pacman.conf /etc/pacman.conf
-
 # Configuring /etc/pacman.d/mirrorlist with reflector
 reflector -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
@@ -38,12 +35,7 @@ cp /etc/pacman.conf /mnt/etc/pacman.conf
 
 # Moving configuration files to new system
 mv part2 /mnt
-mv moddas /mnt
-
-# Instructions to continue
-echo --------------------------------------
-echo To continue configuration type ./part2
-echo --------------------------------------
+mv part3 /mnt
 
 # Chroot into new system
 arch-chroot /mnt
