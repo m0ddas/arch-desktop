@@ -36,7 +36,7 @@ useradd -m modda
 passwd modda
 xdg-user-dirs-update
 EDITOR=nano visudo
-mv /moddas /home/modda/moddas
+mv /part3 /home/modda/part3
 cd /home/modda
 su modda
 echo "-----------------"
