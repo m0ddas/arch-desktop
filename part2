@@ -21,7 +21,15 @@ echo 127.0.1.1  arch-desktop >> /etc/hosts
 pacman -Syy
 pacman-key --populate archlinux
 passwd
-pacman -S efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch fish
+
+# KDE Desktop Environment
+#pacman -S efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch fish
+
+# Gnome Desktop Environment
+
+# XFCE Desktop Environment
+
+# Cinnamon Desktop Environment
 
 # Preparing boot partition and installing grub
 mkdir /boot/efi
