@@ -16,27 +16,35 @@ echo arch-desktop >> /etc/hostname
 echo 127.0.0.1	localhost >> /etc/hosts
 echo ::1		    localhost >> /etc/hosts
 echo 127.0.1.1  arch-desktop >> /etc/hosts
+echo ::1        localhost ip6-localhost ip6-loopback
+echo ff02::1    ip6-allnodes
+echo ff02::2    ip6-allrouters
+echo make sure spacing is correct >> /etc/hosts
+nano /etc/hosts
 
 # Starting installation 
 pacman -Syy
 pacman-key --populate archlinux
 passwd
 
-# KDE Desktop Environment
-#pacman -S efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch fish
+# Install packages
+# Chose desktop environment by adding kde, gnome, cinnamon, mate behind <
+pacman -S - < 
 
-# Gnome Desktop Environment
-
-# XFCE Desktop Environment
-
-# Cinnamon Desktop Environment
-
-# Preparing boot partition and installing grub
-mkdir /boot/efi
-mount /dev/sda1 /boot/efi
-bootctl install
-# grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
-# grub-mkconfig -o /boot/grub/grub.cfg
+# Preparing boot partition and installing systemd-boot
+mkdir /boot
+mount /dev/sda1 /boot
+bootctl --path=/boot install
+echo default arch-* >> /boot/loader/loader.conf
+echo clear default line with numbers >> /boot/loader/loader.conf
+nano /boot/loader/loader.conf
+touch /boot/loader/entries/arch.conf
+echo title  Arch Linux >> /boot/loader/entries/arch.conf
+echo linux  /vmlinuz-linux >> /boot/loader/entries/arch.conf
+echo initrd /initramfs-linux.img >> /boot/loader/entries/arch.conf
+echo options  root=/dev/sda3 rw >> /boot/loader/entries/arch.conf
+echo make sure spacing is correct >> /boot/loader/entries/arch.conf
+nano /boot/loader/entries/arch.conf
 
 # Enabling Services and adding accounts
 systemctl enable sddm.service
