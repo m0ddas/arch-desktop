@@ -17,18 +17,14 @@ mkdir /mnt/home
 mount /dev/sda4 /mnt/home
 
 # Configuring /etc/pacman.d/mirrorlist with reflector
-reflector -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+#reflector -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # Updating mirrors and downloading base for install
 pacman -Syy
-pacstrap /mnt base linux linux-firmware nano base-devel
+pacstrap /mnt base base-devel linux linux-firmware nano
 
 # Generating /etc/fstab on new system
 genfstab -U /mnt >> /mnt/etc/fstab
-
-# Copying pacman configuration to new system
-cp mirrorlist /mnt/etc/pacman.d/mirrorlist
-cp /etc/pacman.conf /mnt/etc/pacman.conf
 
 # Moving configuration files to new system
 mv part2 /mnt
