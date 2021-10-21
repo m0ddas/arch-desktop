@@ -3,7 +3,9 @@ xorg-server
 gdm
 gnome
 networkmanager
+gnome-terminal
 gedit
+gnome-disks
 gnome-tweaks
 fuse
 libreoffice-fresh-sv
