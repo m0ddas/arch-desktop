@@ -47,7 +47,9 @@ echo make sure spacing is correct >> /boot/loader/entries/arch.conf
 nano /boot/loader/entries/arch.conf
 
 # Enabling Services and adding accounts
-systemctl enable !sddm.service !gdm.service !lightdm.service
+#systemctl enable sddm.service 
+#systemctl enable gdm.service
+#systemctl enable lightdm.service
 systemctl enable NetworkManager
 useradd -m modda
 passwd modda
