@@ -14,7 +14,7 @@ echo "KEYMAP=sv-latin1" | tee -a /etc/vconsole.conf
 locale-gen
 
 # Setting up /etc/hostname
-echo "arch-laptop" | tee -a /etc/hostname
+echo "arch-desktop" | tee -a /etc/hostname
 echo "127.0.0.1	localhost" | tee -a /etc/hosts
 echo "::1		    localhost" | tee -a /etc/hosts
 echo "127.0.1.1  arch-laptop" | tee -a /etc/hosts
@@ -25,7 +25,6 @@ echo "ff02::2    ip6-allrouters" | tee -a /etc/hosts
 # Starting installation
 pacman -Syy
 pacman-key --populate archlinux
-passwd
 
 # Installing X.org
 #pacman -S --noconfirm xorg xorg-server
@@ -57,13 +56,13 @@ passwd
 # Preparing boot partition and installing systemd-boot
 pacman -S --noconfirm efibootmgr
 mkdir /boot
-mount /dev/nvme0n1p1 /boot
+mount /dev/sda1 /boot
 bootctl --path=/boot install
 echo "default arch*" | tee /boot/loader/loader.conf
 echo "title Arch Linux" | tee -a /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux" | tee -a /boot/loader/entries/arch.conf
 echo "initrd /initramfs-linux.img" | tee -a /boot/loader/entries/arch.conf
-echo "options root=/dev/nvme0n1p3 rw" | tee -a /boot/loader/entries/arch.conf
+echo "options root=/dev/sda3 rw" | tee -a /boot/loader/entries/arch.conf
 
 # Enabling Services and adding accounts
 #systemctl enable gdm.service
@@ -71,6 +70,7 @@ echo "options root=/dev/nvme0n1p3 rw" | tee -a /boot/loader/entries/arch.conf
 #systemctl enable lightdm.service
 systemctl enable NetworkManager.service
 useradd -m modda
+passwd
 passwd modda
 xdg-user-dirs-update
 EDITOR=nano visudo
