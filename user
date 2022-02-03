@@ -16,10 +16,6 @@ yay -S spotify
 # Installing steam-fonts
 yay -S steam-fonts 
 
-# Installing and enabling Optimus Manager and gdm-prime fix
-yay -S optimus-manager-qt-git gdm-prime
-sudo systemctl enable optimus-manager.service
-
 # Changing shell to fish
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
