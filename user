@@ -14,7 +14,7 @@ curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import 
 yay -S spotify
 
 # Installing steam-fonts
-yay -S steam-fonts 
+yay -S steam-fonts
 
 # Changing shell to fish
 chsh -s /usr/bin/fish
