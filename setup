@@ -1,13 +1,12 @@
 #!/bin/bash
 # Formatting drives and setting up swap
-mkfs.fat -F32 /dev/nvme0n1p1
-mkswap /dev/nvme0n1p2
-swapon /dev/nvme0n1p2
-mkfs.ext4 /dev/nvme0n1p3
-#mkfs.ext4 /dev/nvme1n1p1
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3
 
 # Mounting root partition
-mount /dev/nvme0n1p3 /mnt
+mount /dev/sda3 /mnt
 
 # Installing base system
 pacstrap /mnt base base-devel linux linux-firmware nano
